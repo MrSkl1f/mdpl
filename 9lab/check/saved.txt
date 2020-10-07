@@ -1,0 +1,125 @@
+.text:00401460 ; =============== S U B R O U T I N E =======================================
+.text:00401460
+.text:00401460 ; Attributes: bp-based frame fuzzy-sp
+.text:00401460
+.text:00401460 ; int __cdecl main(int argc, const char **argv, const char **envp)
+.text:00401460                 public _main
+.text:00401460 _main           proc near               ; CODE XREF: sub_4011B0+D3↑p
+.text:00401460
+.text:00401460 var_30          = qword ptr -30h
+.text:00401460 var_28          = qword ptr -28h
+.text:00401460 var_20          = qword ptr -20h
+.text:00401460 var_18          = qword ptr -18h
+.text:00401460 var_10          = qword ptr -10h
+.text:00401460 var_4           = dword ptr -4
+.text:00401460 argc            = dword ptr  8
+.text:00401460 argv            = dword ptr  0Ch
+.text:00401460 envp            = dword ptr  10h
+.text:00401460
+.text:00401460                 lea     ecx, [esp+4]
+.text:00401464                 and     esp, 0FFFFFFF0h
+.text:00401467                 push    dword ptr [ecx-4]
+.text:0040146A                 push    ebp
+.text:0040146B                 mov     ebp, esp
+.text:0040146D                 push    ecx
+.text:0040146E                 sub     esp, 44h
+.text:00401471                 call    ___main
+.text:00401476                 mov     dword ptr [esp+4], offset aCentimeters ; "centimeters: "
+.text:0040147E                 mov     dword ptr [esp], offset __imp___ZSt4cout ; std::cout
+.text:00401485                 call    __ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc ; std::operator<<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,char const*)
+.text:0040148A                 lea     eax, [ebp+var_20]
+.text:0040148D                 mov     [esp], eax
+.text:00401490                 mov     ecx, offset __imp___ZSt3cin ; std::cin
+.text:00401495                 call    __ZNSirsERd     ; std::istream::operator>>(double &)
+.text:0040149A                 sub     esp, 4
+.text:0040149D                 mov     dword ptr [esp+4], offset aChestCircumfer ; "chest circumference: "
+.text:004014A5                 mov     dword ptr [esp], offset __imp___ZSt4cout ; std::cout
+.text:004014AC                 call    __ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc ; std::operator<<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,char const*)
+.text:004014B1                 lea     eax, [ebp+var_28]
+.text:004014B4                 mov     [esp], eax
+.text:004014B7                 mov     ecx, offset __imp___ZSt3cin ; std::cin
+.text:004014BC                 call    __ZNSirsERd     ; std::istream::operator>>(double &)
+.text:004014C1                 sub     esp, 4
+.text:004014C4                 mov     dword ptr [esp+4], offset aWeight ; "weight: "
+.text:004014CC                 mov     dword ptr [esp], offset __imp___ZSt4cout ; std::cout
+.text:004014D3                 call    __ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc ; std::operator<<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,char const*)
+.text:004014D8                 lea     eax, [ebp+var_30]
+.text:004014DB                 mov     [esp], eax
+.text:004014DE                 mov     ecx, offset __imp___ZSt3cin ; std::cin
+.text:004014E3                 call    __ZNSirsERd     ; std::istream::operator>>(double &)
+.text:004014E8                 sub     esp, 4
+.text:004014EB                 fld     [ebp+var_20]
+.text:004014EE                 fld     [ebp+var_28]
+.text:004014F1                 fmulp   st(1), st
+.text:004014F3                 fld     ds:dbl_4050D0
+.text:004014F9                 fdivp   st(1), st
+.text:004014FB                 fstp    [ebp+var_10]
+.text:004014FE                 fld     [ebp+var_30]
+.text:00401501                 fld     [ebp+var_10]
+.text:00401504                 fucomp  st(1)
+.text:00401506                 fnstsw  ax
+.text:00401508                 sahf
+.text:00401509                 jp      short loc_40152B
+.text:0040150B                 fld     [ebp+var_10]
+.text:0040150E                 fucompp
+.text:00401510                 fnstsw  ax
+.text:00401512                 sahf
+.text:00401513                 jnz     short loc_40152D
+.text:00401515                 mov     dword ptr [esp+4], offset aEverythingIsOk ; "everything is ok\n"
+.text:0040151D                 mov     dword ptr [esp], offset __imp___ZSt4cout ; std::cout
+.text:00401524                 call    __ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc ; std::operator<<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,char const*)
+.text:00401529                 jmp     short loc_401564
+.text:0040152B ; ---------------------------------------------------------------------------
+.text:0040152B
+.text:0040152B loc_40152B:                             ; CODE XREF: _main+A9↑j
+.text:0040152B                 fstp    st
+.text:0040152D
+.text:0040152D loc_40152D:                             ; CODE XREF: _main+B3↑j
+.text:0040152D                 fld     [ebp+var_30]
+.text:00401530                 fld     [ebp+var_10]
+.text:00401533                 fucompp
+.text:00401535                 fnstsw  ax
+.text:00401537                 sahf
+.text:00401538                 jbe     short loc_401550
+.text:0040153A                 mov     dword ptr [esp+4], offset aYouReOverweigh ; "You're overweight\n"
+.text:00401542                 mov     dword ptr [esp], offset __imp___ZSt4cout ; std::cout
+.text:00401549                 call    __ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc ; std::operator<<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,char const*)
+.text:0040154E                 jmp     short loc_401564
+.text:00401550 ; ---------------------------------------------------------------------------
+.text:00401550
+.text:00401550 loc_401550:                             ; CODE XREF: _main+D8↑j
+.text:00401550                 mov     dword ptr [esp+4], offset aYouAreTooThin ; "You are too thin\n"
+.text:00401558                 mov     dword ptr [esp], offset __imp___ZSt4cout ; std::cout
+.text:0040155F                 call    __ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc ; std::operator<<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,char const*)
+.text:00401564
+.text:00401564 loc_401564:                             ; CODE XREF: _main+C9↑j
+.text:00401564                                         ; _main+EE↑j
+.text:00401564                 fld     [ebp+var_30]
+.text:00401567                 fld     [ebp+var_20]
+.text:0040156A                 fld     ds:dbl_4050D8
+.text:00401570                 fdivp   st(1), st
+.text:00401572                 fld     [ebp+var_20]
+.text:00401575                 fld     ds:dbl_4050D8
+.text:0040157B                 fdivp   st(1), st
+.text:0040157D                 fmulp   st(1), st
+.text:0040157F                 fdivp   st(1), st
+.text:00401581                 fstp    [ebp+var_18]
+.text:00401584                 fld     [ebp+var_10]
+.text:00401587                 fstp    qword ptr [esp]
+.text:0040158A                 mov     ecx, offset __imp___ZSt4cout ; std::cout
+.text:0040158F                 call    __ZNSolsEd      ; std::ostream::operator<<(double)
+.text:00401594                 sub     esp, 8
+.text:00401597                 mov     dword ptr [esp+4], offset asc_4050CD ; "\n"
+.text:0040159F                 mov     [esp], eax
+.text:004015A2                 call    __ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc ; std::operator<<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,char const*)
+.text:004015A7                 fld     [ebp+var_18]
+.text:004015AA                 fstp    qword ptr [esp]
+.text:004015AD                 mov     ecx, eax
+.text:004015AF                 call    __ZNSolsEd      ; std::ostream::operator<<(double)
+.text:004015B4                 sub     esp, 8
+.text:004015B7                 mov     eax, 0
+.text:004015BC                 mov     ecx, [ebp+var_4]
+.text:004015BF                 leave
+.text:004015C0                 lea     esp, [ecx-4]
+.text:004015C3                 retn
+.text:004015C3 _main           endp
